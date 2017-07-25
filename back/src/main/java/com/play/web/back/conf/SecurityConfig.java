@@ -19,6 +19,14 @@ import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: caizhuojie
+ * Date: 2017/7/25
+ * Time: 15:12
+ * To change this template use File | Settings | File Templates.
+ */
+
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

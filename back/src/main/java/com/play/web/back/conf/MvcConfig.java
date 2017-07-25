@@ -13,6 +13,14 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: caizhuojie
+ * Date: 2017/7/25
+ * Time: 15:12
+ * To change this template use File | Settings | File Templates.
+ */
+
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @EnableScheduling

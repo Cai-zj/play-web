@@ -1,9 +1,16 @@
 package com.play.web.cache;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: caizhuojie
+ * Date: 2017/7/25
+ * Time: 15:12
+ * To change this template use File | Settings | File Templates.
+ */
 
 /**
  * 缓存服务

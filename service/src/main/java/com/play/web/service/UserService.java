@@ -12,6 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: caizhuojie
+ * Date: 2017/7/25
+ * Time: 15:12
+ * To change this template use File | Settings | File Templates.
+ */
+
+
 /**
  * 用户服务接口
  *

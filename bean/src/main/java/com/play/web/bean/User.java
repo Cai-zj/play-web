@@ -3,8 +3,13 @@ package com.play.web.bean;
 import java.util.Date;
 
 /**
- * Created by admin on 16/8/8.
+ * Created with IntelliJ IDEA.
+ * User: caizhuojie
+ * Date: 2017/7/25
+ * Time: 15:12
+ * To change this template use File | Settings | File Templates.
  */
+
 public class User {
     private Integer id;
     private String username;

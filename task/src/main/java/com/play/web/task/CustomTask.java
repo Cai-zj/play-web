@@ -6,8 +6,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
+ * Created with IntelliJ IDEA.
+ * User: caizhuojie
+ * Date: 2017/7/25
+ * Time: 15:12
+ * To change this template use File | Settings | File Templates.
+ */
+
+/**
  *  自定义定时任务
- * Created by admin on 16/8/15.
  */
 @Component
 public class CustomTask {
