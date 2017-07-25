@@ -14,6 +14,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
  * To change this template use File | Settings | File Templates.
  */
 
+
 @Configurable
 @PropertySource(value={"classpath:back.properties"})
 public class BackConfig {
