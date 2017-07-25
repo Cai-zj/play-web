@@ -1,7 +1,11 @@
 package com.play.web.cache.conf;
 
 /**
- * Created by hushuang on 16/8/18.
+ * Created with IntelliJ IDEA.
+ * User: caizhuojie
+ * Date: 2017/7/25
+ * Time: 15:12
+ * To change this template use File | Settings | File Templates.
  */
 
 import org.springframework.beans.factory.annotation.Value;
