@@ -21,10 +21,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * To change this template use File | Settings | File Templates.
  */
 
-@EnableWebMvc
+@EnableWebMvc //启用Spring MVC
 @EnableAspectJAutoProxy
 @EnableScheduling
-@ComponentScan(basePackages =
+@ComponentScan(basePackages =   //启用组件扫描
         {"com.play.web.back.controller",
                 "com.play.web.service",
                 "com.play.web.task"})
@@ -42,7 +42,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * jsp视图解析器
+     * 配置jsp视图解析器
      * @return
      */
     @Bean
@@ -55,7 +55,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     *  公共部分解析器
+     *  配置公共部分解析器（静态资源的处理）
      * @return
      */
     @Bean(name="multipartResolver")

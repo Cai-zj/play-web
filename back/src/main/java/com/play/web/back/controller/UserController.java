@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 用户请求处理器
  * Created by admin on 16/8/6.
  */
-@Controller
+@Controller  //声明为一个控制器
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -36,7 +36,7 @@ public class UserController {
     @Autowired
     private CacheService cacheService;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)   //处理对 “/home” 的GET请求
     @PreAuthorize("isAuthenticated()")// isAuthenticated 如果用户不是匿名用户就返回true
     public String showHomePage() {
         try {
@@ -60,4 +60,5 @@ public class UserController {
 
         return "/index/index";
     }
+
 }

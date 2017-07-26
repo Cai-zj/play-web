@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,6 @@
 <h1>首页</h1>
 
 <h2>登录成功</h2>
-
-<button >退出</button>
+<a href="<c:url  value="/logout" /> ">退出登录</a>
 </body>
 </html>
