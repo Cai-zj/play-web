@@ -1,6 +1,8 @@
 package com.play.web.dao.conf;
 
+import com.github.pagehelper.PageHelper;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.slf4j.Logger;
@@ -8,10 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Created with IntelliJ IDEA.
@@ -60,6 +65,13 @@ public class DatabaseConfig {
         dataSource.setMaxIdle(maxIdle);
         return dataSource;
     }
+    /**
+     * 必须加上static
+     */
+    public static PropertySourcesPlaceholderConfigurer placehodlerConfigurer() {
+        logger.info("PropertySourcesPlaceholderConfigurer");
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
     @Bean
     public DataSourceTransactionManager txManager() {
@@ -70,7 +82,25 @@ public class DatabaseConfig {
     public SqlSessionFactory sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
+        //配置pageHelper
+        sessionFactory.setPlugins(new Interceptor[]{pageHelper()});
         return sessionFactory.getObject();
+    }
+
+    /**
+     * mybatis 分页插件配置
+     * @return
+     */
+    @Bean
+    public PageHelper pageHelper() {
+        logger.info("MyBatisConfiguration.pageHelper()");
+        PageHelper pageHelper = new PageHelper();
+        Properties p = new Properties();
+        p.setProperty("offsetAsPageNum", "true");
+        p.setProperty("rowBoundsWithCount", "true");
+        p.setProperty("reasonable", "true");
+        pageHelper.setProperties(p);
+        return pageHelper;
     }
 }
 

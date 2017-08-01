@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * 负责安全相关的配置处理
  */
-@EnableWebSecurity
+@EnableWebSecurity //启用WEB安全功能
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -46,16 +46,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(md5Encoder);
 	}
 
-	@Override
+	@Override //通过重载 配置Spring Security 的Filter链
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resource/**");
+		web.ignoring().antMatchers("/css/**","/js/**","/img/**","/font-awesome/**");
 	}
 
-	@Override
+	@Override //通过重载，配置如何通过拦截器保护请求 代码配置了自定义的过滤器 、自定义登录页面、和退出功能。
+	          // 其中自定义的过滤器相当于配置了对资源的授权
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http
-//				.csrf().ignoringAntMatchers("/statistics/dayDetailExport").and()
+				.csrf().ignoringAntMatchers("/statistics/dayDetailExport").and()
 //				将login.jsp定为登陆页面，只处理/login这个请求
 				.formLogin().loginPage("/login.jsp").and().formLogin().loginProcessingUrl("/login")
 //				如果登陆成功就跳转到/home这个地址，如果失败就跳转到/?error=1

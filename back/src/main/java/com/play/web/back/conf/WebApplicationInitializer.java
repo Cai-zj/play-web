@@ -22,6 +22,8 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
 
 	/**
 	 * 获取配置信息
+	 * 类似于web.xml中配置ContextLoaderListener的contextConfigLocation
+	 * 只是这个返回的是一个JavaConfig的数组Class
 	 * @return
 	 */
 	@Override
@@ -31,6 +33,9 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
 
 	/**
 	 * 指定配置类
+	 * web 配置类初始化
+	 * 类似于web.xml中配置DispatcherServlet的contextConfigLocation
+	 * 只是这个返回的是一个JavaConfig的数组Class
 	 * @return
 	 */
 	@Override
@@ -40,6 +45,8 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
 
 	/**
 	 * 将DispatcherServlet 映射到 "/"
+	 * 表示默认 Servlet
+	 * 等同于&lt;mapping-url/&gt
 	 * @return
 	 */
 	@Override
