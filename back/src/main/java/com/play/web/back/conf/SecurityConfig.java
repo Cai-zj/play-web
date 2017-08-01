@@ -27,6 +27,9 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 
+/**
+ * 负责安全相关的配置处理
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -38,6 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		// SpringSecurity 安全框架自动处理的逻辑，首先是通过username查询users表中是否有记录，
+		// 然后通过将密码进行MD5加密，去跟数据库中的密码比对，如果相同就让用户执行configure方法中配置的登陆策略
 		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(md5Encoder);
 	}
 
@@ -59,7 +64,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout().logoutUrl("/logout")
 //				登陆成功后跳转的地址，以及删除的cookie名称
 				.and().logout().logoutSuccessUrl("/")
-				.and().logout().deleteCookies("JSESSIONID");
+				.and().logout().deleteCookies("JSESSIONID")
+				.and().logout().invalidateHttpSession(true);
+
 //		配置记住我的过期时间
 		http.rememberMe().tokenValiditySeconds(1209600)
 				.and().rememberMe().rememberMeParameter("remember-me");

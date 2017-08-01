@@ -15,8 +15,12 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
  */
 
 
+
+/**
+ * 负责管理基本配置信息
+ */
 @Configurable
-@PropertySource(value={"classpath:back.properties"})
+@PropertySource(value={"classpath:back.properties"})  //读取配置文件 （redis/mysql）
 public class BackConfig {
 	@Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {

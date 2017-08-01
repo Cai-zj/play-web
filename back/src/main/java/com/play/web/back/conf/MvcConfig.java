@@ -21,6 +21,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * To change this template use File | Settings | File Templates.
  */
 
+/**
+ * 负责处理SpringMvc的配置信息以及组件的加载
+ */
+
 @EnableWebMvc //启用Spring MVC
 @EnableAspectJAutoProxy
 @EnableScheduling
@@ -51,8 +55,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         bean.setViewClass(org.springframework.web.servlet.view.JstlView.class);
         bean.setPrefix("/WEB-INF/pages/");
         bean.setSuffix(".jsp");
+        bean.setOrder(0);
         return bean;
     }
+
+
 
     /**
      *  配置公共部分解析器（静态资源的处理）
