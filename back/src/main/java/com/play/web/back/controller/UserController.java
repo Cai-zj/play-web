@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created with IntelliJ IDEA.
  * User: caizhuojie
@@ -37,7 +39,7 @@ public class UserController {
     @Autowired
     private CacheService cacheService;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)   //处理对 “/home” 的GET请求
+    @RequestMapping(value = "/home",produces="text/html;charset=UTF-8", method = RequestMethod.GET)   //处理对 “/home” 的GET请求
     @PreAuthorize("isAuthenticated()")// isAuthenticated 如果用户不是匿名用户就返回true
     public String showHomePage() {
         try {
@@ -63,12 +65,11 @@ public class UserController {
     }
 
 
-
-
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated()")
-    public String logout() throws Exception {
-        return "../../login";
+    public String logout(HttpSession session) throws Exception {
+        session.invalidate();
+        return "redirect:../../login.jsp";
     }
 
 }
