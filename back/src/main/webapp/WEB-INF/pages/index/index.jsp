@@ -10,6 +10,6 @@
 <h1>首页</h1>
 
 <h2>登录成功</h2>
-<a href="<c:url  value="/logout" /> ">退出登录</a>
+<a href="<%=request.getContextPath()%>/logout" />退出登录</a>
 </body>
 </html>

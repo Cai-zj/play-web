@@ -64,9 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		这里配置的是登出的请求
 		http.logout().logoutUrl("/logout")
 //				登陆成功后跳转的地址，以及删除的cookie名称
-				.and().logout().logoutSuccessUrl("/")
-				.and().logout().deleteCookies("JSESSIONID")
-				.and().logout().invalidateHttpSession(true);
+				.and().logout().logoutSuccessUrl("/");
 
 //		配置记住我的过期时间
 		http.rememberMe().tokenValiditySeconds(1209600)

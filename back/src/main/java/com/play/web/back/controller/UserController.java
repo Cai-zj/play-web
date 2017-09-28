@@ -5,15 +5,19 @@ import com.play.web.cache.CacheKey;
 import com.play.web.cache.CacheService;
 import com.play.web.service.UserService;
 import com.alibaba.fastjson.JSON;
+import org.apache.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -39,11 +43,12 @@ public class UserController {
     @Autowired
     private CacheService cacheService;
 
-    @RequestMapping(value = "/home",produces="text/html;charset=UTF-8", method = RequestMethod.GET)   //处理对 “/home” 的GET请求
+    @RequestMapping(value = "/home", produces = "text/html;charset=UTF-8", method = RequestMethod.GET)
+    //处理对 “/home” 的GET请求
     @PreAuthorize("isAuthenticated()")// isAuthenticated 如果用户不是匿名用户就返回true
-    public String showHomePage() {
+    public String showHomePage(HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
         try {
-            
+
             User user = userService.loadUserByUsername("admin");
 
 //            测试缓存服务
@@ -53,23 +58,14 @@ public class UserController {
             String userStr = cacheService.get(CacheKey.LOGIN_USER_KEY + user.getId());
 //            进行反序列化
             User u = JSON.parseObject(userStr, User.class);
-            if(u != null){
+            if (u != null) {
                 logger.info("user:{}", u);
             }
             logger.info("load user ");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getLocalizedMessage(), e);
         }
 
         return "/index/index";
     }
-
-
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    @PreAuthorize("isAuthenticated()")
-    public String logout(HttpSession session) throws Exception {
-        session.invalidate();
-        return "redirect:../../login.jsp";
-    }
-
 }
